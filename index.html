@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permainan Tebak Angka 🎲</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Tebak Angka Rahasia ✨</h1>
+        <p>Saya memegang angka rahasia antara *1 dan 20. Anda punya **5* kali kesempatan menebak.</p>
+        
+        <div class="input-group">
+            <input type="number" id="guess-input" placeholder="Masukkan tebakan Anda (1-20)">
+            <button onclick="checkGuess()" id="guess-button">Tebak</button>
+        </div>
+        
+        <p id="message" class="info">Ayo, coba tebak angkanya!</p>
+        <p id="attempts-display" class="info">Percobaan tersisa: 5</p>
+        
+        <button onclick="resetGame()" class="reset-button" id="reset-button" style="display:none;">Ulangi Permainan</button>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>
