@@ -3,41 +3,56 @@ let numberToGuess;
 let attempts;
 const maxAttempts = 5;
 
-// Elemen DOM (Document Object Model)
-const guessInput = document.getElementById('guess-input');
-const messageDisplay = document.getElementById('message');
-const attemptsDisplay = document.getElementById('attempts-display');
+// Variabel untuk elemen DOM (akan diambil saat game dimulai)
+let guessInput;
+let messageDisplay;
+let attemptsDisplay;
+let guessButton;
+let resetButton;
 
 // Fungsi untuk memulai atau mengatur ulang permainan
 function initializeGame() {
+    // Ambil elemen DOM
+    guessInput = document.getElementById('guess-input');
+    messageDisplay = document.getElementById('message');
+    attemptsDisplay = document.getElementById('attempts-display');
+    guessButton = document.getElementById('guess-button');
+    resetButton = document.getElementById('reset-button');
+    
     // 1. Menghasilkan Angka Acak dan Mengatur Percobaan
-    // Math.random() menghasilkan (0 hingga <1). Kita kalikan 20, tambahkan 1, lalu dibulatkan ke bawah (floor)
-    numberToGuess = Math.floor(Math.random() * 20) + 1; 
+    numberToGuess = Math.floor(Math.random() * 20) + 1; // Angka 1-20
     attempts = maxAttempts;
     
     // Perbarui tampilan di website
     messageDisplay.textContent = "Masukkan tebakan Anda!";
-    attemptsDisplay.textContent = `Percobaan tersisa: ${attempts}`;
-    guessInput.value = ''; // Mengosongkan kolom input
+    messageDisplay.classList.remove('correct', 'wrong');
+    attemptsDisplay.textContent = Percobaan tersisa: ${attempts};
+    
+    // Reset status input/tombol
+    guessInput.value = '';
     guessInput.disabled = false;
+    guessButton.disabled = false;
+    resetButton.style.display = 'none'; // Sembunyikan tombol reset
 }
 
 // Fungsi utama yang dipanggil saat tombol "Tebak" diklik
 function checkGuess() {
-    // Ambil nilai tebakan dari input dan konversi ke integer
     const guess = parseInt(guessInput.value);
 
     // 2. Memeriksa Masukan dan Batas Angka
     if (isNaN(guess) || guess < 1 || guess > 20) {
-        messageDisplay.textContent = "Input tidak valid. Silakan masukkan angka bulat antara 1 dan 20.";
-        return; // Hentikan fungsi
+        messageDisplay.textContent = "Input tidak valid. Masukkan angka bulat antara 1 dan 20.";
+        messageDisplay.classList.add('wrong');
+        return; 
     }
+    
+    messageDisplay.classList.remove('wrong'); // Hapus kelas 'wrong' jika input sudah benar
 
     // 3. Memeriksa Tebakan
     if (guess === numberToGuess) {
-        messageDisplay.textContent = `Selamat! Anda berhasil menebak angka (${numberToGuess})! 🎉`;
-        guessInput.disabled = true; // Nonaktifkan input setelah menang
-        attemptsDisplay.textContent = `Percobaan tersisa: ${attempts}`;
+        messageDisplay.textContent = Selamat! Anda berhasil menebak angka (${numberToGuess})! 🎉;
+        messageDisplay.classList.add('correct');
+        endGame(true);
     } else {
         // Mengurangi Jumlah Percobaan
         attempts--;
@@ -49,14 +64,23 @@ function checkGuess() {
             messageDisplay.textContent = "Terlalu tinggi! Coba lagi.";
         }
 
-        attemptsDisplay.textContent = `Percobaan tersisa: ${attempts}`;
+        attemptsDisplay.textContent = Percobaan tersisa: ${attempts};
+        messageDisplay.classList.add('wrong');
+
 
         // 4. Mengakhiri Permainan jika Percobaan Habis
         if (attempts === 0) {
-            messageDisplay.textContent = `Maaf, percobaan Anda habis! Angka rahasia adalah: ${numberToGuess}. 🙁`;
-            guessInput.disabled = true; // Nonaktifkan input setelah kalah
+            messageDisplay.textContent = Maaf, percobaan Anda habis! Angka rahasia adalah: ${numberToGuess}. 🙁;
+            endGame(false);
         }
     }
+}
+
+// Fungsi untuk mengakhiri permainan (dipanggil saat menang/kalah)
+function endGame(isWin) {
+    guessInput.disabled = true;
+    guessButton.disabled = true;
+    resetButton.style.display = 'block'; // Tampilkan tombol reset
 }
 
 // Fungsi untuk menghubungkan tombol "Ulangi Permainan"
