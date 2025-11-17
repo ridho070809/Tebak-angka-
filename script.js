@@ -15,7 +15,7 @@ function initializeGame() {
     // Ambil elemen DOM
     guessInput = document.getElementById('guess-input');
     messageDisplay = document.getElementById('message');
-    attemptsDisplay = document.getElementById('attempts-display');
+    attemptsDisplay.textContent = \Percobaan tersisa: ${attempts}`;`
     guessButton = document.getElementById('guess-button');
     resetButton = document.getElementById('reset-button');
     
@@ -50,7 +50,7 @@ function checkGuess() {
 
     // 3. Memeriksa Tebakan
     if (guess === numberToGuess) {
-        messageDisplay.textContent = Selamat! Anda berhasil menebak angka (${numberToGuess})! 🎉;
+        messageDisplay.textContent = \Selamat! Anda berhasil menebak angka (${numberToGuess})! 🎉`;`
         messageDisplay.classList.add('correct');
         endGame(true);
     } else {
@@ -70,7 +70,7 @@ function checkGuess() {
 
         // 4. Mengakhiri Permainan jika Percobaan Habis
         if (attempts === 0) {
-            messageDisplay.textContent = Maaf, percobaan Anda habis! Angka rahasia adalah: ${numberToGuess}. 🙁;
+          messageDisplay.textContent = \Maaf, percobaan Anda habis! Angka rahasia adalah: ${numberToGuess}. 🙁`;
             endGame(false);
         }
     }
