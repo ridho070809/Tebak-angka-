@@ -1,0 +1,89 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6f7ff; /* Warna latar belakang biru muda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+}
+
+h1 {
+    color: #1a73e8; /* Warna biru Google */
+    margin-bottom: 25px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#guess-input {
+    padding: 12px;
+    width: 60%;
+    border: 2px solid #ccc;
+    border-radius: 8px 0 0 8px; /* Sudut melengkung kiri */
+    font-size: 16px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #4285f4; /* Biru Google */
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0; /* Sudut melengkung kanan */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button#guess-button {
+    margin: 0; /* Menghapus margin agar menyatu dengan input */
+}
+
+button:hover {
+    background-color: #3367d6;
+}
+
+.reset-button {
+    background-color: #f4b400; /* Kuning Google */
+    border-radius: 8px;
+    margin-top: 15px;
+    display: inline-block; /* Agar tombol reset muncul di tengah */
+}
+
+.reset-button:hover {
+    background-color: #e0ac00;
+}
+
+.info {
+    margin-top: 15px;
+    font-size: 1.1em;
+}
+
+#message {
+    font-weight: bold;
+    min-height: 30px; /* Memberi ruang untuk pesan */
+}
+
+/* Kelas tambahan untuk feedback */
+.correct {
+    color: #0f9d58; /* Hijau untuk menang */
+}
+
+.wrong {
+    color: #db4437; /* Merah untuk kalah/salah tebak */
+}
